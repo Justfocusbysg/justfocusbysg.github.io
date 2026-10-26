@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Travaux — Just Focus by SG</title>
+<meta name="description" content="Matchs, campagnes, concerts, mariages, lieux : la galerie de Steven George Baltyde.">
+<link rel="icon" href="assets/img/5d5467d702881dd163548854dc16608a.png">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,400..900&amp;family=Fraunces:ital,opsz,wght@1,9..144,400&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="logo" href="index.html" aria-label="Just Focus — accueil"><img src="assets/img/5d5467d702881dd163548854dc16608a.png" alt="Just Focus"></a>
+  <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+  <nav class="nav" id="nav" aria-label="Navigation principale">
+    <a class="link" href="travaux.html" aria-current="page">Travaux</a>
+    <a class="link" href="index.html#univers">Univers</a>
+    <a class="link" href="index.html#apropos">À propos</a>
+    <a class="link" href="index.html#video">Vidéo</a>
+    <a class="btn btn--light" href="index.html#contact">Me contacter</a>
+  </nav>
+</header>
+
+<main>
+<section class="page-head">
+  <div class="wrap">
+    <div class="page-head__top">
+      <h1 class="split" aria-label="Travaux">
+        <span class="line" aria-hidden="true"><span>Tra<span class="script">vaux</span></span></span>
+      </h1>
+      <p class="lede reveal" style="--d:.3s">Matchs, campagnes, concerts, mariages, lieux. Cliquez sur une image pour l'agrandir.</p>
+    </div>
+    <div class="filters reveal" style="--d:.4s" role="group" aria-label="Filtrer par univers" id="filters"></div>
+  </div>
+</section>
+
+<section aria-label="Galerie">
+  <div class="wrap">
+    <div class="masonry" id="gallery"></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2 class="h2 split"><span class="line"><span>Un projet ?</span></span><span class="line"><span class="script accent">Parlons-en.</span></span></h2>
+    <a class="btn btn--fill reveal" href="index.html#contact">Me contacter <span class="arrow">→</span></a>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="footer__name reveal">Just Focus <span class="script">by SG</span></p>
+    <div class="footer__bottom">
+      <span><img src="assets/img/5d5467d702881dd163548854dc16608a.png" alt="">© 2026 Steven George Baltyde</span>
+      <span>Photo &amp; vidéo · Alsace</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image agrandie" aria-hidden="true">
+  <figure><img id="lb-img" src="" alt=""></figure>
+  <div class="lb-bar">
+    <button type="button" class="lb-btn" id="lb-prev" aria-label="Image précédente"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <span class="lb-count" id="lb-count"></span>
+    <button type="button" class="lb-btn" id="lb-next" aria-label="Image suivante"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+    <button type="button" class="lb-btn" id="lb-close" aria-label="Fermer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+</div>
+
+<script src="assets/js/gallery.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
