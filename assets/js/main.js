@@ -13,12 +13,44 @@
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
 
   window.observeReveal = function (el) { io.observe(el); };
-  document.querySelectorAll('.reveal, .wipe, .split, .tile').forEach(function (el) { io.observe(el); });
 
-  /* hero lines play on load */
-  requestAnimationFrame(function () {
-    document.querySelectorAll('.hero .split, .hero .wipe, .page-head .split').forEach(function (el) { el.classList.add('is-in'); });
-  });
+  function start() {
+    document.querySelectorAll('.reveal, .wipe, .split, .tile').forEach(function (el) { io.observe(el); });
+    /* hero lines play as soon as the page is shown */
+    requestAnimationFrame(function () {
+      document.querySelectorAll('.hero .split, .hero .wipe, .page-head .split').forEach(function (el) { el.classList.add('is-in'); });
+    });
+  }
+
+  /* ---------- Intro: the logo signs itself, then the curtain lifts ----------
+     Played once per visit (session); later pages open straight away. */
+  var loader = document.querySelector('.loader');
+  var seen = false;
+  try { seen = sessionStorage.getItem('jf-intro') === '1'; } catch (e) {}
+  if (!loader || seen) {
+    if (loader) loader.remove();
+    start();
+  } else {
+    root.classList.add('is-loading');
+    try { sessionStorage.setItem('jf-intro', '1'); } catch (e) {}
+    var minTime = reduce ? 500 : 1500;
+    var t0 = Date.now();
+    var done = false;
+    var finish = function () {
+      if (done) return;
+      done = true;
+      var wait = Math.max(0, minTime - (Date.now() - t0));
+      setTimeout(function () {
+        loader.classList.add('is-done');
+        root.classList.remove('is-loading');
+        setTimeout(start, reduce ? 0 : 350);
+        setTimeout(function () { loader.remove(); }, 1200);
+      }, wait);
+    };
+    if (document.readyState === 'complete') finish();
+    else window.addEventListener('load', finish);
+    setTimeout(finish, 3500); /* never hold the page longer than this */
+  }
 
   /* ---------- Header: solid after scroll, hides when scrolling down ---------- */
   var header = document.querySelector('.site-header');

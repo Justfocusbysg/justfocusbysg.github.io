@@ -67,7 +67,8 @@
     b.className = 'tile';
     b.dataset.cat = r[3];
     b.setAttribute('aria-label', 'Agrandir : ' + r[2]);
-    b.innerHTML = '<img src="assets/img/' + r[0] + '.jpg" alt="" width="' + r[1] + '" height="' + r[2] + '" loading="lazy"><span>' + CATS[r[3]] + '</span>';
+    var base = 'assets/img/web/' + r[0];
+    b.innerHTML = '<img src="' + base + '-800.webp" srcset="' + base + '-800.webp 800w, ' + base + '-1600.webp 1600w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="" width="' + r[1] + '" height="' + r[2] + '" loading="lazy" decoding="async"><span>' + CATS[r[3]] + '</span>';
     b.querySelector('img').alt = r[4];
     b.querySelector('img').style.aspectRatio = r[1] + ' / ' + r[2];
     b.addEventListener('click', function () { open(visible.indexOf(i)); });
@@ -124,7 +125,7 @@
     var r = ALL[visible[current]];
     lbImg.classList.remove('is-ready');
     lbImg.onload = function () { lbImg.classList.add('is-ready'); };
-    lbImg.src = 'assets/img/' + r[0] + '.jpg';
+    lbImg.src = 'assets/img/web/' + r[0] + '-1600.webp';
     lbImg.alt = r[4];
     if (lbImg.complete) lbImg.classList.add('is-ready');
     lbCount.innerHTML = '<b>' + CATS[r[3]] + '</b> · ' + (current + 1) + ' / ' + n;
