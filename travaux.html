@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<script>document.documentElement.classList.add('js')</script>
+<script>(function(){var t;try{t=localStorage.getItem('jf-theme')}catch(e){}var r=document.documentElement;r.dataset.theme=t==='light'?'light':'dark';r.classList.add('js')})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,400..900&amp;family=Fraunces:ital,opsz,wght@1,9..144,400&amp;display=swap" rel="stylesheet">
@@ -29,13 +29,17 @@
 </head>
 <body>
 <div class="loader" aria-hidden="true">
-  <div class="loader__logo"><img src="assets/img/web/logo.webp" alt="" width="150" height="129"></div>
+  <div class="loader__logo"><img src="assets/img/web/logo.webp" alt="" width="150" height="129"><span class="g g1"></span><span class="g g2"></span></div>
   <div class="loader__bar"><span></span></div>
 </div>
 <div class="progress" aria-hidden="true"></div>
 
 <header class="site-header">
   <a class="logo" href="index.html" aria-label="Just Focus — accueil"><img src="assets/img/web/logo.webp" alt="Just Focus" width="150" height="129"></a>
+  <button class="theme-toggle" type="button" aria-label="Activer le mode clair" aria-pressed="false">
+    <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+    <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
+  </button>
   <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
   <nav class="nav" id="nav" aria-label="Navigation principale">
     <a class="link" href="travaux.html" aria-current="page">Travaux</a>

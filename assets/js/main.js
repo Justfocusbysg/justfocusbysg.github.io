@@ -87,6 +87,37 @@
   }, { passive: true });
   onScroll();
 
+  /* ---------- Light / dark mode ---------- */
+  var toggle = document.querySelector('.theme-toggle');
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  function syncToggle() {
+    var light = root.dataset.theme === 'light';
+    if (toggle) {
+      toggle.setAttribute('aria-pressed', light ? 'true' : 'false');
+      toggle.setAttribute('aria-label', light ? 'Activer le mode sombre' : 'Activer le mode clair');
+    }
+    if (themeMeta) themeMeta.setAttribute('content', light ? '#F4F2EE' : '#0E0E0E');
+  }
+  syncToggle();
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      var next = root.dataset.theme === 'light' ? 'dark' : 'light';
+      var apply = function () {
+        root.dataset.theme = next;
+        try { localStorage.setItem('jf-theme', next); } catch (e) {}
+        syncToggle();
+      };
+      if (document.startViewTransition && !reduce) {
+        var b = toggle.getBoundingClientRect();
+        root.style.setProperty('--vt-x', (b.left + b.width / 2) + 'px');
+        root.style.setProperty('--vt-y', (b.top + b.height / 2) + 'px');
+        document.startViewTransition(apply);
+      } else {
+        apply();
+      }
+    });
+  }
+
   /* ---------- Mobile menu ---------- */
   var menuBtn = document.querySelector('.menu-btn');
   if (menuBtn) {
