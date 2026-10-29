@@ -24,7 +24,7 @@
   --f-display: 'Archivo', 'Arial Narrow', sans-serif;
   --f-label: 'Archivo', 'Arial Narrow', sans-serif;
   --f-text: 'Archivo', system-ui, sans-serif;
-  --f-script: 'Fraunces', Georgia, serif;
+  --f-script: 'Yellowtail', 'Brush Script MT', cursive;
 
   --gutter: clamp(16px, 4vw, 48px);
   --max: 1600px;
@@ -51,7 +51,8 @@ button { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
-.script { font-family: var(--f-script); font-style: italic; font-weight: 400; font-stretch: normal; text-transform: none; letter-spacing: -0.01em; }
+/* Yellowtail is already a slanted brush script: no italic, and a touch larger than the caps it sits beside */
+.script { font-family: var(--f-script); font-style: normal; font-weight: 400; font-stretch: normal; text-transform: none; letter-spacing: 0; }
 .accent { color: var(--accent); }
 
 /* ---------- Progress + header ---------- */
@@ -112,14 +113,14 @@ button { font: inherit; color: inherit; }
 .hero__top { display: grid; grid-template-columns: 1fr; gap: 28px; }
 .hero__row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px 40px; }
 .hero__row .hero__kicker {
-  max-width: none; margin: 0 0 14px; font-family: var(--f-script); font-style: italic;
-  font-size: clamp(22px, 2.2vw, 30px); color: var(--accent);
+  max-width: none; margin: 0 0 14px; font-family: var(--f-script); font-style: normal;
+  font-size: clamp(25px, 2.5vw, 34px); color: var(--accent);
 }
 .hero h1 {
   margin: 0; font-family: var(--f-display); font-stretch: 62%; font-weight: 900; text-transform: uppercase;
   font-size: clamp(64px, 9.4vw, 150px); line-height: .9; letter-spacing: -0.02em;
 }
-.hero h1 .script { text-transform: none; font-size: 1em; color: var(--accent); }
+.hero h1 .script { text-transform: none; font-size: 1.1em; color: var(--accent); }
 .hero__row p { margin: 0; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; color: var(--ink-soft); max-width: 30ch; }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero__strip {
@@ -140,7 +141,7 @@ button { font: inherit; color: inherit; }
 
 /* ---------- Marquee ---------- */
 .refs { padding: 34px 0; background: var(--accent-fill); color: var(--on-accent); overflow: hidden; }
-.refs__label { margin: 0 0 14px; padding: 0 var(--gutter); font-family: var(--f-script); font-style: italic; font-size: 22px; }
+.refs__label { margin: 0 0 14px; padding: 0 var(--gutter); font-family: var(--f-script); font-style: normal; font-size: 25px; }
 .marquee { display: flex; width: max-content; animation: marquee 34s linear infinite; }
 .refs:hover .marquee { animation-play-state: paused; }
 .marquee ul { display: flex; margin: 0; padding: 0; list-style: none; }
@@ -159,7 +160,7 @@ button { font: inherit; color: inherit; }
   margin: 0; font-family: var(--f-display); font-stretch: 62%; font-weight: 900; text-transform: uppercase;
   font-size: clamp(48px, 6.4vw, 96px); line-height: .95; letter-spacing: -0.015em;
 }
-.h2 .script { text-transform: none; font-size: 1em; }
+.h2 .script { text-transform: none; font-size: 1.1em; }
 .lede { margin: 0; font-size: 19px; line-height: 1.6; color: var(--ink-soft); max-width: 44ch; }
 
 /* reveal (rise + fade) */
@@ -269,7 +270,7 @@ button { font: inherit; color: inherit; }
   margin: 0; font-family: var(--f-display); font-stretch: 62%; font-weight: 900; text-transform: uppercase;
   font-size: clamp(56px, 13.5vw, 210px); line-height: .82; letter-spacing: -0.025em; white-space: nowrap;
 }
-.footer__name .script { text-transform: none; color: var(--accent); }
+.footer__name .script { text-transform: none; color: var(--accent); font-size: .74em; white-space: nowrap; }
 .footer__bottom { margin-top: 36px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font-size: 15px; color: var(--muted); }
 .footer__bottom img { height: 36px; width: auto; }
 .footer__bottom span { display: flex; align-items: center; gap: 14px; }
@@ -320,7 +321,7 @@ button { font: inherit; color: inherit; }
 .lb-btn { width: 52px; height: 52px; border-radius: 50%; border: 1px solid #5A5650; background: var(--ground); display: grid; place-items: center; cursor: pointer; transition: .3s; }
 .lb-btn:hover { border-color: var(--accent); color: var(--accent); }
 .lb-count { min-width: 220px; text-align: center; font-size: 14px; color: var(--muted); }
-.lb-count b { font-family: var(--f-script); font-style: italic; font-weight: 400; font-size: 20px; color: var(--ink); }
+.lb-count b { font-family: var(--f-script); font-style: normal; font-weight: 400; font-size: 20px; color: var(--ink); }
 
 .cta-band { padding: clamp(80px, 10vw, 140px) 0; background: var(--ground-2); }
 .cta-band .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 32px; }
@@ -376,7 +377,7 @@ button { font: inherit; color: inherit; }
 }
 .page-head h1 .script { margin-left: 0; }
 /* space before the italic word inside a heading line */
-.line > span > .script, .footer__name .script { margin-left: .06em; }
+.line > span > .script, .footer__name .script { margin-left: .1em; }
 .hero h1, .h2, .footer__name, .page-head h1, .marquee li { word-spacing: .1em; }
 .page-head h1 .line > span > .script { margin-left: 0; }
 
