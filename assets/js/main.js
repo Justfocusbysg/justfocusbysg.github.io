@@ -1,4 +1,4 @@
-/* Just Focus by SG — interactions & animations */
+/* Just Focus by SGB — interactions & animations */
 (function () {
   var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -118,31 +118,45 @@
     });
   }
 
-  /* ---------- Mood: turquoise / bleu nuit ---------- */
-  var mood = document.querySelector('.mood-toggle');
-  function syncMood() {
-    var nuit = root.dataset.mood === 'nuit';
-    mood.setAttribute('aria-pressed', nuit ? 'true' : 'false');
-    mood.setAttribute('aria-label', nuit ? 'Ambiance turquoise' : 'Ambiance bleu nuit');
-  }
-  if (mood) {
+  /* ---------- Mood: accent colour picker ---------- */
+  var moodBox = document.querySelector('.mood');
+  if (moodBox) {
+    var moodBtn = moodBox.querySelector('.mood-toggle');
+    var swatches = Array.prototype.slice.call(moodBox.querySelectorAll('.swatch'));
+    var syncMood = function () {
+      var current = root.dataset.mood || 'turquoise';
+      swatches.forEach(function (sw) { sw.setAttribute('aria-checked', sw.dataset.mood === current ? 'true' : 'false'); });
+    };
+    var openMood = function (open) {
+      moodBox.classList.toggle('is-open', open);
+      moodBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
     syncMood();
-    mood.addEventListener('click', function () {
-      var next = root.dataset.mood === 'nuit' ? 'turquoise' : 'nuit';
-      var apply = function () {
-        if (next === 'nuit') root.dataset.mood = 'nuit';
-        else delete root.dataset.mood;
-        try { localStorage.setItem('jf-mood', next); } catch (e) {}
-        syncMood();
-      };
-      if (document.startViewTransition && !reduce) {
-        var b = mood.getBoundingClientRect();
-        root.style.setProperty('--vt-x', (b.left + b.width / 2) + 'px');
-        root.style.setProperty('--vt-y', (b.top + b.height / 2) + 'px');
-        document.startViewTransition(apply);
-      } else {
-        apply();
-      }
+    moodBtn.addEventListener('click', function () { openMood(!moodBox.classList.contains('is-open')); });
+    document.addEventListener('click', function (ev) { if (!moodBox.contains(ev.target)) openMood(false); });
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape' && moodBox.classList.contains('is-open')) { openMood(false); moodBtn.focus(); }
+    });
+    swatches.forEach(function (sw) {
+      sw.addEventListener('click', function () {
+        var next = sw.dataset.mood;
+        openMood(false);
+        if (next === (root.dataset.mood || 'turquoise')) return;
+        var apply = function () {
+          if (next === 'turquoise') delete root.dataset.mood;
+          else root.dataset.mood = next;
+          try { localStorage.setItem('jf-mood', next); } catch (e) {}
+          syncMood();
+        };
+        if (document.startViewTransition && !reduce) {
+          var b = sw.getBoundingClientRect();
+          root.style.setProperty('--vt-x', (b.left + b.width / 2) + 'px');
+          root.style.setProperty('--vt-y', (b.top + b.height / 2) + 'px');
+          document.startViewTransition(apply);
+        } else {
+          apply();
+        }
+      });
     });
   }
 

@@ -1,18 +1,22 @@
-/* Just Focus by SG — portfolio */
+/* Just Focus by SGB — portfolio */
 :root {
   --ground: #0E0E0E;
   --ground-2: #161616;
   --ink: #F2EFEA;
   --ink-soft: #D9D5CE;
   --muted: #A8A39B;
-  --accent: #2EC4B6;
-  --accent-fill: #2EC4B6;
-  --on-accent: #0E0E0E;
+  /* mood colours (turquoise by default, see "Moods" below) */
+  --m-hi: #2EC4B6; --m-lo: #08766C;
+  --m-fill-d: #2EC4B6; --m-on-d: #0E0E0E;
+  --m-fill-l: #08766C; --m-on-l: #F4F2EE;
   --glitch: #2EC4B6;
+  --accent: var(--m-hi);
+  --accent-fill: var(--m-fill-d);
+  --on-accent: var(--m-on-d);
   --paper: #F2EFEA;
   --paper-ink: #0E0E0E;
   --paper-muted: #4A463F;
-  --paper-accent: #08766C;
+  --paper-accent: var(--m-lo);
   --line: #4A463F;
   --header-bg: rgba(14, 14, 14, .94);
   color-scheme: dark;
@@ -453,39 +457,30 @@ button { font: inherit; color: inherit; }
   --ink: #0E0E0E;
   --ink-soft: #2A2826;
   --muted: #5F5A53;
-  --accent: #08766C;
-  --accent-fill: #08766C;
-  --on-accent: #F4F2EE;
+  --accent: var(--m-lo);
+  --accent-fill: var(--m-fill-l);
+  --on-accent: var(--m-on-l);
   --paper: #141414;
   --paper-ink: #F2EFEA;
   --paper-muted: #A8A39B;
-  --paper-accent: #2EC4B6;
+  --paper-accent: var(--m-hi);
   --line: #C9C3B9;
   --header-bg: rgba(244, 242, 238, .94);
   color-scheme: light;
 }
-/* "Bleu nuit" mood (button in the header). #191970 is too dark to read as text on black,
-   so in dark mode it fills the bands and buttons and a lighter tint carries the text. */
-:root[data-mood="nuit"] {
-  --accent: #8F8FEA;
-  --accent-fill: #191970;
-  --on-accent: #F2EFEA;
-  --glitch: #4A4AFF;
-  --paper-accent: #191970;
-}
-:root[data-mood="nuit"][data-theme="light"] {
-  --accent: #191970;
-  --on-accent: #F4F2EE;
-  --paper-accent: #8F8FEA;
-}
-[data-theme="light"] .logo img, [data-theme="light"] .footer__bottom img, [data-theme="light"] .loader__logo img { filter: invert(1); }
+/* ---------- Moods (colour picker in the header) ----------
+   hi = accent on dark grounds, lo = accent on light grounds, fill/on = filled bands and buttons.
+   #191970 is too dark to read as text on black, so in dark mode it fills and a lighter tint carries the text. */
+:root[data-mood="nuit"]   { --m-hi: #8F8FEA; --m-lo: #191970; --m-fill-d: #191970; --m-on-d: #F2EFEA; --m-fill-l: #191970; --m-on-l: #F4F2EE; --glitch: #4A4AFF; }
+:root[data-mood="vert"]   { --m-hi: #3DD68C; --m-lo: #17714A; --m-fill-d: #3DD68C; --m-on-d: #0E0E0E; --m-fill-l: #17714A; --m-on-l: #F4F2EE; --glitch: #3DD68C; }
+:root[data-mood="orange"] { --m-hi: #F26B3A; --m-lo: #B23F17; --m-fill-d: #F26B3A; --m-on-d: #0E0E0E; --m-fill-l: #B23F17; --m-on-l: #F4F2EE; --glitch: #F26B3A; }
+:root[data-mood="jaune"]  { --m-hi: #F5C518; --m-lo: #806300; --m-fill-d: #F5C518; --m-on-d: #0E0E0E; --m-fill-l: #F5C518; --m-on-l: #0E0E0E; --glitch: #F5C518; }
 /* areas over photos stay dark in both modes */
 .contact, .lightbox {
-  --ground: #0E0E0E; --ground-2: #161616; --ink: #F2EFEA; --ink-soft: #D9D5CE; --muted: #A8A39B; --accent: #2EC4B6; --line: #4A463F;
-  --accent-fill: #2EC4B6; --on-accent: #0E0E0E;
+  --ground: #0E0E0E; --ground-2: #161616; --ink: #F2EFEA; --ink-soft: #D9D5CE; --muted: #A8A39B; --line: #4A463F;
+  --accent: var(--m-hi); --accent-fill: var(--m-fill-d); --on-accent: var(--m-on-d);
   color: var(--ink);
 }
-[data-mood="nuit"] .contact, [data-mood="nuit"] .lightbox { --accent: #8F8FEA; --accent-fill: #191970; --on-accent: #F2EFEA; }
 .selection figcaption, .reel .tag { color: #F2EFEA; }
 body, .site-header, .about, .cta-band, .chip, .tile { transition: background-color .4s var(--ease), color .4s var(--ease); }
 
@@ -497,18 +492,30 @@ body, .site-header, .about, .cta-band, .chip, .tile { transition: background-col
 }
 .theme-toggle:hover, .mood-toggle:hover { border-color: var(--accent); color: var(--accent); }
 .theme-toggle:active, .mood-toggle:active { transform: scale(.92); }
-/* mood: a dot of the current colour, with the other one waiting behind it */
-.mood-toggle .dot { grid-area: 1 / 1; width: 18px; height: 18px; border-radius: 50%; transition: transform .5s var(--ease), opacity .3s; }
-.mood-toggle .dot--turquoise { background: #2EC4B6; }
-.mood-toggle .dot--nuit { background: #191970; box-shadow: 0 0 0 1.5px #8F8FEA; }
-:root:not([data-mood="nuit"]) .mood-toggle .dot--nuit, [data-mood="nuit"] .mood-toggle .dot--turquoise { opacity: 0; transform: scale(.3); }
+/* mood picker: a dot of the current colour, opening a row of swatches */
+.mood { order: 2; position: relative; }
+.mood-toggle .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--m-fill-d); box-shadow: 0 0 0 1.5px var(--m-hi); transition: background-color .4s, box-shadow .4s; }
+.mood__menu {
+  position: absolute; top: calc(100% + 10px); right: -8px; display: flex; gap: 6px; padding: 8px;
+  background: var(--header-bg); border: 1px solid var(--line); border-radius: 999px;
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  opacity: 0; visibility: hidden; transform: translateY(-6px) scale(.96); transform-origin: top right;
+  transition: opacity .25s, transform .35s var(--ease), visibility 0s .35s;
+}
+.mood.is-open .mood__menu { opacity: 1; visibility: visible; transform: none; transition: opacity .25s, transform .35s var(--ease); }
+.swatch { width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; display: grid; place-items: center; }
+.swatch span { width: 20px; height: 20px; border-radius: 50%; background: var(--c); transition: transform .3s var(--ease), box-shadow .3s; }
+.swatch:hover span { transform: scale(1.15); }
+.swatch[aria-checked="true"] span { box-shadow: 0 0 0 2px var(--ground), 0 0 0 3.5px var(--ink); }
+.swatch--nuit span { box-shadow: inset 0 0 0 1.5px #8F8FEA; }
+.swatch--nuit[aria-checked="true"] span { box-shadow: inset 0 0 0 1.5px #8F8FEA, 0 0 0 2px var(--ground), 0 0 0 3.5px var(--ink); }
 .theme-toggle svg { grid-area: 1 / 1; transition: transform .5s var(--ease), opacity .3s; }
 [data-theme="dark"] .theme-toggle .icon-moon, [data-theme="light"] .theme-toggle .icon-sun { opacity: 0; transform: rotate(-90deg) scale(.5); }
 .logo { order: 0; margin-right: auto; }
 .nav { order: 1; }
 .menu-btn { order: 3; }
-@media (min-width: 761px) { .mood-toggle { margin-left: 8px; } }
-.mood-toggle + .theme-toggle { margin-left: -6px; }
+@media (min-width: 761px) { .mood { margin-left: 8px; } }
+.mood + .theme-toggle { margin-left: -6px; }
 
 /* circle reveal when switching mode (browsers with View Transitions) */
 ::view-transition-old(root) { animation: none; }

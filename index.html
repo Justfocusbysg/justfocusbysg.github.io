@@ -3,25 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Steven George Baltyde — Photographe &amp; vidéaste · Just Focus by SG</title>
+<title>Steven George Baltyde — Photographe &amp; vidéaste · Just Focus by SGB</title>
 <meta name="description" content="Steven George Baltyde, photographe et vidéaste basé à Sélestat (Alsace). Sport, marques, événements, mariages et lieux, dans tout le Grand Est et en France.">
-<link rel="canonical" href="https://justfocusbysg.github.io/">
+<link rel="canonical" href="https://justfocusbysgb.github.io/">
 <meta name="theme-color" content="#0E0E0E">
 <meta name="author" content="Steven George Baltyde">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:site_name" content="Just Focus by SG">
-<meta property="og:title" content="Steven George Baltyde — Photographe &amp; vidéaste · Just Focus by SG">
+<meta property="og:site_name" content="Just Focus by SGB">
+<meta property="og:title" content="Steven George Baltyde — Photographe &amp; vidéaste · Just Focus by SGB">
 <meta property="og:description" content="Steven George Baltyde, photographe et vidéaste basé à Sélestat (Alsace). Sport, marques, événements, mariages et lieux, dans tout le Grand Est et en France.">
-<meta property="og:url" content="https://justfocusbysg.github.io/">
-<meta property="og:image" content="https://justfocusbysg.github.io/assets/img/og-image.jpg">
+<meta property="og:url" content="https://justfocusbysgb.github.io/">
+<meta property="og:image" content="https://justfocusbysgb.github.io/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Just Focus by SG — photographie de sport">
+<meta property="og:image:alt" content="Just Focus by SGB — photographie de sport">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<script>(function(){var t;try{t=localStorage.getItem('jf-theme')}catch(e){}var r=document.documentElement;r.dataset.theme=t==='light'?'light':'dark';try{if(localStorage.getItem('jf-mood')==='nuit')r.dataset.mood='nuit'}catch(e){}r.classList.add('js')})()</script>
+<script>(function(){var t;try{t=localStorage.getItem('jf-theme')}catch(e){}var r=document.documentElement;r.dataset.theme=t==='light'?'light':'dark';try{var m=localStorage.getItem('jf-mood');if(/^(nuit|vert|orange|jaune)$/.test(m))r.dataset.mood=m}catch(e){}r.classList.add('js')})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,400..900&amp;family=Fraunces:ital,opsz,wght@1,9..144,400&amp;display=swap" rel="stylesheet">
@@ -31,11 +31,11 @@
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "Just Focus by SG",
+  "name": "Just Focus by SGB",
   "description": "Photographe et vidéaste : sport, marques, événements, mariages et lieux.",
-  "url": "https://justfocusbysg.github.io/",
-  "image": "https://justfocusbysg.github.io/assets/img/og-image.jpg",
-  "logo": "https://justfocusbysg.github.io/assets/img/apple-touch-icon.png",
+  "url": "https://justfocusbysgb.github.io/",
+  "image": "https://justfocusbysgb.github.io/assets/img/og-image.jpg",
+  "logo": "https://justfocusbysgb.github.io/assets/img/apple-touch-icon.png",
   "email": "sg.justfocuson@gmail.com",
   "founder": { "@type": "Person", "name": "Steven George Baltyde", "jobTitle": "Photographe et vidéaste" },
   "address": { "@type": "PostalAddress", "addressLocality": "Sélestat", "addressRegion": "Grand Est", "addressCountry": "FR" },
@@ -53,9 +53,16 @@
 
 <header class="site-header">
   <a class="logo" href="#top" aria-label="Just Focus — accueil"><img src="assets/img/web/logo.webp" alt="Just Focus" width="150" height="129"></a>
-  <button class="mood-toggle" type="button" aria-label="Ambiance bleu nuit" aria-pressed="false" title="Changer d'ambiance">
-    <span class="dot dot--turquoise" aria-hidden="true"></span><span class="dot dot--nuit" aria-hidden="true"></span>
-  </button>
+  <div class="mood">
+    <button class="mood-toggle" type="button" aria-label="Changer d'ambiance" aria-haspopup="true" aria-expanded="false" aria-controls="mood-menu" title="Changer d'ambiance"><span class="dot" aria-hidden="true"></span></button>
+    <div class="mood__menu" id="mood-menu" role="menu" aria-label="Ambiance de couleur">
+      <button class="swatch swatch--turquoise" type="button" role="menuitemradio" aria-checked="false" data-mood="turquoise" aria-label="Turquoise" title="Turquoise" style="--c:#2EC4B6"><span></span></button>
+      <button class="swatch swatch--nuit" type="button" role="menuitemradio" aria-checked="false" data-mood="nuit" aria-label="Bleu nuit" title="Bleu nuit" style="--c:#191970"><span></span></button>
+      <button class="swatch swatch--vert" type="button" role="menuitemradio" aria-checked="false" data-mood="vert" aria-label="Vert" title="Vert" style="--c:#3DD68C"><span></span></button>
+      <button class="swatch swatch--orange" type="button" role="menuitemradio" aria-checked="false" data-mood="orange" aria-label="Orange" title="Orange" style="--c:#F26B3A"><span></span></button>
+      <button class="swatch swatch--jaune" type="button" role="menuitemradio" aria-checked="false" data-mood="jaune" aria-label="Jaune" title="Jaune" style="--c:#F5C518"><span></span></button>
+    </div>
+  </div>
   <button class="theme-toggle" type="button" aria-label="Activer le mode clair" aria-pressed="false">
     <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
     <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
@@ -238,7 +245,7 @@
 
 <footer class="footer">
   <div class="wrap">
-    <p class="footer__name reveal">Just Focus <span class="script">by SG</span></p>
+    <p class="footer__name reveal">Just Focus <span class="script">by SGB</span></p>
     <div class="footer__bottom">
       <span><img src="assets/img/web/logo.webp" alt="" width="150" height="129" loading="lazy">© 2026 Steven George Baltyde</span>
       <span>Photo &amp; vidéo · Alsace</span>
