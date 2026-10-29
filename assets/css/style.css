@@ -6,6 +6,9 @@
   --ink-soft: #D9D5CE;
   --muted: #A8A39B;
   --accent: #2EC4B6;
+  --accent-fill: #2EC4B6;
+  --on-accent: #0E0E0E;
+  --glitch: #2EC4B6;
   --paper: #F2EFEA;
   --paper-ink: #0E0E0E;
   --paper-muted: #4A463F;
@@ -40,7 +43,7 @@ body {
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; }
-::selection { background: var(--accent); color: var(--ground); }
+::selection { background: var(--accent-fill); color: var(--on-accent); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
@@ -95,9 +98,10 @@ button { font: inherit; color: inherit; }
 .btn:active { transform: scale(.97); }
 .btn .arrow { transition: transform .45s var(--ease); }
 .btn:hover .arrow { transform: translateX(5px); }
-.btn--fill { background: var(--accent); border-color: var(--accent); color: var(--ground); }
+.btn--fill { background: var(--accent-fill); border-color: var(--accent-fill); color: var(--on-accent); }
 .btn--light { background: var(--ink); border-color: var(--ink); color: var(--ground); }
-.btn--light::before { background: var(--accent); }
+.btn--light::before { background: var(--accent-fill); }
+.btn--light:hover, .btn--light:focus-visible { color: var(--on-accent); }
 
 /* ---------- Hero ---------- */
 .hero { padding: clamp(110px, 10vw, 140px) 0 clamp(56px, 7vw, 96px); }
@@ -131,7 +135,7 @@ button { font: inherit; color: inherit; }
 .line:nth-child(3) > span { transition-delay: .18s; }
 
 /* ---------- Marquee ---------- */
-.refs { padding: 34px 0; background: var(--accent); color: var(--ground); overflow: hidden; }
+.refs { padding: 34px 0; background: var(--accent-fill); color: var(--on-accent); overflow: hidden; }
 .refs__label { margin: 0 0 14px; padding: 0 var(--gutter); font-family: var(--f-script); font-style: italic; font-size: 22px; }
 .marquee { display: flex; width: max-content; animation: marquee 34s linear infinite; }
 .refs:hover .marquee { animation-play-state: paused; }
@@ -220,7 +224,7 @@ button { font: inherit; color: inherit; }
 .reel:hover img { transform: scale(1.07); filter: none; }
 .reel .play {
   position: absolute; top: 50%; left: 50%; width: 72px; height: 72px; margin: -36px 0 0 -36px;
-  border-radius: 50%; background: var(--accent); color: var(--ground);
+  border-radius: 50%; background: var(--accent-fill); color: var(--on-accent);
   display: grid; place-items: center; transform: scale(.7); opacity: 0;
   transition: transform .5s var(--ease), opacity .4s;
 }
@@ -386,7 +390,7 @@ button { font: inherit; color: inherit; }
   -webkit-mask: url('../img/web/logo.webp') center / contain no-repeat;
           mask: url('../img/web/logo.webp') center / contain no-repeat;
 }
-.loader__logo .g1 { background: #2EC4B6; mix-blend-mode: screen; animation: glitch-a 1.35s .05s steps(1, end) forwards; }
+.loader__logo .g1 { background: var(--glitch); mix-blend-mode: screen; animation: glitch-a 1.35s .05s steps(1, end) forwards; }
 .loader__logo .g2 { background: #FF2E6E; mix-blend-mode: screen; animation: glitch-b 1.35s .05s steps(1, end) forwards; }
 [data-theme="light"] .loader__logo .g { mix-blend-mode: multiply; }
 .loader__bar { width: clamp(160px, 22vw, 260px); height: 2px; background: var(--line); overflow: hidden; }
@@ -450,6 +454,8 @@ button { font: inherit; color: inherit; }
   --ink-soft: #2A2826;
   --muted: #5F5A53;
   --accent: #08766C;
+  --accent-fill: #08766C;
+  --on-accent: #F4F2EE;
   --paper: #141414;
   --paper-ink: #F2EFEA;
   --paper-muted: #A8A39B;
@@ -458,29 +464,51 @@ button { font: inherit; color: inherit; }
   --header-bg: rgba(244, 242, 238, .94);
   color-scheme: light;
 }
+/* "Bleu nuit" mood (button in the header). #191970 is too dark to read as text on black,
+   so in dark mode it fills the bands and buttons and a lighter tint carries the text. */
+:root[data-mood="nuit"] {
+  --accent: #8F8FEA;
+  --accent-fill: #191970;
+  --on-accent: #F2EFEA;
+  --glitch: #4A4AFF;
+  --paper-accent: #191970;
+}
+:root[data-mood="nuit"][data-theme="light"] {
+  --accent: #191970;
+  --on-accent: #F4F2EE;
+  --paper-accent: #8F8FEA;
+}
 [data-theme="light"] .logo img, [data-theme="light"] .footer__bottom img, [data-theme="light"] .loader__logo img { filter: invert(1); }
 /* areas over photos stay dark in both modes */
 .contact, .lightbox {
   --ground: #0E0E0E; --ground-2: #161616; --ink: #F2EFEA; --ink-soft: #D9D5CE; --muted: #A8A39B; --accent: #2EC4B6; --line: #4A463F;
+  --accent-fill: #2EC4B6; --on-accent: #0E0E0E;
   color: var(--ink);
 }
+[data-mood="nuit"] .contact, [data-mood="nuit"] .lightbox { --accent: #8F8FEA; --accent-fill: #191970; --on-accent: #F2EFEA; }
 .selection figcaption, .reel .tag { color: #F2EFEA; }
 body, .site-header, .about, .cta-band, .chip, .tile { transition: background-color .4s var(--ease), color .4s var(--ease); }
 
-.theme-toggle {
+.theme-toggle, .mood-toggle {
   order: 2; position: relative; z-index: 2;
   width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line);
   background: transparent; color: var(--ink); cursor: pointer;
   display: grid; place-items: center; transition: border-color .3s, color .3s, transform .2s var(--ease);
 }
-.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
-.theme-toggle:active { transform: scale(.92); }
+.theme-toggle:hover, .mood-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.theme-toggle:active, .mood-toggle:active { transform: scale(.92); }
+/* mood: a dot of the current colour, with the other one waiting behind it */
+.mood-toggle .dot { grid-area: 1 / 1; width: 18px; height: 18px; border-radius: 50%; transition: transform .5s var(--ease), opacity .3s; }
+.mood-toggle .dot--turquoise { background: #2EC4B6; }
+.mood-toggle .dot--nuit { background: #191970; box-shadow: 0 0 0 1.5px #8F8FEA; }
+:root:not([data-mood="nuit"]) .mood-toggle .dot--nuit, [data-mood="nuit"] .mood-toggle .dot--turquoise { opacity: 0; transform: scale(.3); }
 .theme-toggle svg { grid-area: 1 / 1; transition: transform .5s var(--ease), opacity .3s; }
 [data-theme="dark"] .theme-toggle .icon-moon, [data-theme="light"] .theme-toggle .icon-sun { opacity: 0; transform: rotate(-90deg) scale(.5); }
 .logo { order: 0; margin-right: auto; }
 .nav { order: 1; }
 .menu-btn { order: 3; }
-@media (min-width: 761px) { .theme-toggle { margin-left: 8px; } }
+@media (min-width: 761px) { .mood-toggle { margin-left: 8px; } }
+.mood-toggle + .theme-toggle { margin-left: -6px; }
 
 /* circle reveal when switching mode (browsers with View Transitions) */
 ::view-transition-old(root) { animation: none; }

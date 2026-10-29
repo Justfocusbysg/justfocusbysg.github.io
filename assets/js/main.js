@@ -118,6 +118,34 @@
     });
   }
 
+  /* ---------- Mood: turquoise / bleu nuit ---------- */
+  var mood = document.querySelector('.mood-toggle');
+  function syncMood() {
+    var nuit = root.dataset.mood === 'nuit';
+    mood.setAttribute('aria-pressed', nuit ? 'true' : 'false');
+    mood.setAttribute('aria-label', nuit ? 'Ambiance turquoise' : 'Ambiance bleu nuit');
+  }
+  if (mood) {
+    syncMood();
+    mood.addEventListener('click', function () {
+      var next = root.dataset.mood === 'nuit' ? 'turquoise' : 'nuit';
+      var apply = function () {
+        if (next === 'nuit') root.dataset.mood = 'nuit';
+        else delete root.dataset.mood;
+        try { localStorage.setItem('jf-mood', next); } catch (e) {}
+        syncMood();
+      };
+      if (document.startViewTransition && !reduce) {
+        var b = mood.getBoundingClientRect();
+        root.style.setProperty('--vt-x', (b.left + b.width / 2) + 'px');
+        root.style.setProperty('--vt-y', (b.top + b.height / 2) + 'px');
+        document.startViewTransition(apply);
+      } else {
+        apply();
+      }
+    });
+  }
+
   /* ---------- Mobile menu ---------- */
   var menuBtn = document.querySelector('.menu-btn');
   if (menuBtn) {
