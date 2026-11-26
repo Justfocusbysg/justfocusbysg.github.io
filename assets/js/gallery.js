@@ -64,6 +64,12 @@
     ['592de052024894bb93f790b992a396f2', 2000, 1500, 'events', 'Mariés à contre-jour au soleil couchant']
   ];
 
+  /* a new order on every visit, so returning visitors don't always see the same photos first */
+  for (var r = ALL.length - 1; r > 0; r--) {
+    var j = Math.floor(Math.random() * (r + 1));
+    var tmp = ALL[r]; ALL[r] = ALL[j]; ALL[j] = tmp;
+  }
+
   var gallery = document.getElementById('gallery');
   var filtersEl = document.getElementById('filters');
   var filter = 'all';
