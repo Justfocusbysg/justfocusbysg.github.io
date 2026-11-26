@@ -59,8 +59,23 @@
   var parallax = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
   var ticking = false;
 
+  /* back-to-top button, shown once the visitor has scrolled past the first screen */
+  var toTop = document.createElement('button');
+  toTop.type = 'button';
+  toTop.className = 'to-top';
+  toTop.setAttribute('aria-label', 'Remonter en haut de la page');
+  toTop.tabIndex = -1;
+  toTop.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg>';
+  toTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+  document.body.appendChild(toTop);
+
   function onScroll() {
     var y = window.scrollY;
+    var showTop = y > window.innerHeight * 0.8;
+    toTop.classList.toggle('is-on', showTop);
+    toTop.tabIndex = showTop ? 0 : -1;
     if (header) {
       header.classList.toggle('is-solid', y > 40);
       header.classList.toggle('is-hidden', y > 400 && y > lastY && !root.classList.contains('menu-open'));
