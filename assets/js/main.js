@@ -1,4 +1,4 @@
-/* Just Focus by SGB — interactions & animations */
+/* Just Focus by SG — interactions & animations */
 (function () {
   var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

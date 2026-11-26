@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://justfocusbysgb.github.io/sitemap.xml
+Sitemap: https://justfocusbysg.github.io/sitemap.xml
